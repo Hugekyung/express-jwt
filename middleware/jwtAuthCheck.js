@@ -7,7 +7,6 @@ exports.jwtAuthCheck = (req, res, next) => {
         req.user = user; // req.user에 유저 정보 할당
         next();
     } catch (err) {
-        res.clearCookie("token");
-        return res.status(403).json({ msg: "token does not matched."})
+        return res.status(403).clearCookie("token").json({ msg: "token does not matched."});
     }
 }
